@@ -14,12 +14,6 @@ This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, s
 
 ---
 
-## Table of Contents
-
-
-
----
-
 ## Tools Used
 
 | Tool / Service               | Purpose                                                      |
@@ -35,6 +29,21 @@ This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, s
 | **Docker**                  | Container platform used to deploy SafeLine WAF              |
 | **SafeLine WAF**            | Open-source Web Application Firewall                        |
 | **OpenSSL**                 | Used to generate self-signed SSL certificates                |
+
+
+## Table of Contents
+- [Phase 1 – VM Creation & MDE Onboarding](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-1--vm-creation--mde-onboarding)
+- [Phase 2 – Enabling GUI + RDP for Ubuntu 24.04 image](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-2--enabling-gui--rdp-for-ubuntu-2404-image)
+- [Phase 3 - DVWA Setup & Configuration](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-3---dvwa-setup--configuration)
+- [Phase 4 – Installing Docker & SafeLine WAF](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-4--installing-docker--safeline-waf)
+- [Phase 5 – Configuring SSL for DVWA](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-5--configuring-ssl-for-dvwa)
+- [Phase 6 - Add Application to WAF to begin monitoring and protecting](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-6---add-application-to-waf-to-begin-monitoring-and-protecting)
+- [Phase 7 - Simulating Attacks on the Vulnerable App and observing the response from the WAF](
+- [Phase 8 - Monitoring Logs on MDE](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-8---monitoring-logs-on-mde)
+- [Conclusion](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#conclusion)
+- [Final Notes](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#final-notes)
+
+
 
 ---
 
@@ -370,7 +379,9 @@ Add Application form where you configure for your specific setup
 <img width="1429" alt="Application in safeline" src="https://github.com/user-attachments/assets/a517fbff-9693-4ef8-93a5-114c8710661b" />
 Application successfully onbaorded to SafeLine WAF 
 
-## Phase 7 - set up Http flood-rate limiting rule and add 1 user to set up authentication for the page and then breach rate limit + refresh url and have to authenticate through the WAF + perform sql injection and observe block 
+## Phase 7 - Simulating Attacks on the Vulnerable App and observing the response from the WAF
+
+set up Http flood-rate limiting rule and add 1 user to set up authentication for the page and then breach rate limit + refresh url and have to authenticate through the WAF + perform sql injection and observe block 
  - WAF demonstrations with safeline (add authentic images of what happened in the lab simulation later):
 
 
