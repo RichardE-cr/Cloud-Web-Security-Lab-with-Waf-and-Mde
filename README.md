@@ -395,7 +395,8 @@ Configure new user name and enable uthentication to log into the website through
 <img width="1373" alt="Authenticationconfig-signin-WAF" src="https://github.com/user-attachments/assets/26bede40-02b0-42d7-a924-af63f830abf8" />
 Once Authentication is enabled you will only be allowed to enter the website by entering a valid registered username and password
 
-<img width="1416" alt="Authentication-WAF-attempts" src="https://github.com/user-attachments/assets/a054f039-9033-4caf-af4f-6c284f1c8038" />
+
+<img width="1419" alt="Authentication-Logs-WAF" src="https://github.com/user-attachments/assets/73adabd7-33f0-44dd-9114-f54c2cd9cef5" />
 From the WAF you can see all Authentication attempts at accessing the page and ip address associated 
 
 ### SQLinjection 
@@ -439,6 +440,10 @@ Through this hands-on experience, core cybersecurity and DevSecOps principles we
 * This lab illustrates not only technical proficiency in infrastructure and security deployment but also an understanding of security observability and layered protection strategies.
 
 ## Final Notes
+
+<img width="1424" alt="WAFDashboard after operating for 2 days" src="https://github.com/user-attachments/assets/b198620e-75ae-4edf-a335-a1cb477cec48" />
+WAF dashboard showing attacks from different countries after 2 days 
+
 
 * SafeLine WAF successfully mitigated simulated attacks against DVWA.
 * Logs and behavior could be further integrated into centralized SIEM solutions for extended analysis.
