@@ -1,8 +1,14 @@
 # Cloud-Web-Security-Lab-with-Waf-and-Mde
-Install a Web Application Firewall (WAF), simulate web attacks, and observe how foreign attacks are detected and blocked.
+
+How Safeline WAF works:
+
+![how-safeline-waf-works](https://github.com/user-attachments/assets/db25403e-711f-4880-b093-774d1e5c6c9f)
 
 
-# Network-Focused Lab: WAF Deployment & Attack Simulation – 30th May 2025
+
+
+
+# WAF (SafeLine) Deployment & Attack Simulation 
 
 This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, simulating common attacks (e.g., SQLi, XSS), observing foreign attack traffic, and analyzing behavior via Microsoft Defender for Endpoint (MDE). The lab was performed using a single Ubuntu VM hosted on Microsoft Azure.
 
@@ -91,8 +97,10 @@ sudo systemctl start xrdp
 
 # Allow RDP in firewall
 sudo ufw allow 3389/tcp
+# You can now log in to your Ubuntu VM using Microsoft Remote Desktop (Windows/macOS/Linux) with your Linux credentials.
 ```
-You can now log in to your Ubuntu VM using Microsoft Remote Desktop (Windows/macOS/Linux) with your Linux credentials.
+<img width="1431" alt="Setting up GUI from the commandline" src="https://github.com/user-attachments/assets/8afbe365-49a9-4db9-8155-383ea437ee5b" />
+
 
 
 ## Phase 3 - DVWA Setup & Configuration
@@ -103,6 +111,9 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install apache2 mariadb-server php php-mysqli php-gd libapache2-mod-php git unzip -y
 ```
 
+<img width="1420" alt="preparing the ubuntu vm and installing necessary packages" src="https://github.com/user-attachments/assets/11ef9634-05a3-495d-8ccb-f38ff3303b21" />
+
+
 Step 2: Install DVWA
 ```bash
 cd /var/www/html
@@ -110,6 +121,9 @@ sudo git clone https://github.com/digininja/DVWA.git
 sudo chown -R www-data:www-data DVWA/
 sudo chmod -R 755 DVWA/
 ```
+
+<img width="1143" alt="Download and install DVWA" src="https://github.com/user-attachments/assets/93bbbb0e-eeef-44ad-a111-be4368e22084" />
+
 
 Step 3: Configure DVWA
 ```bash
@@ -126,6 +140,10 @@ $_DVWA[ 'db_user' ] = 'dvwa';
 $_DVWA[ 'db_password' ] = 'P@ssw0rd!';
 $_DVWA[ 'db_port' ] = '3306';
 ```
+
+<img width="1425" alt="Edit Lines in MariaDB" src="https://github.com/user-attachments/assets/7652f14b-58df-4021-a2d7-7dd7b569d993" />
+
+
 
 Step 4: Configure the Database 
 ```bash
@@ -149,8 +167,12 @@ sudo systemctl restart mysql
 
 Step 6: Access DVWA
 ```bash
-http://<your-public-ip>/DVWA
+# http://<your-public-ip>/DVWA
+http://135.237.184.217/DVWA
 ```
+
+<img width="1440" alt="Successfully accessed DVWA via browser " src="https://github.com/user-attachments/assets/d4881f68-8c4c-4e71-81d3-25dd2c77519a" />
+
 
 ## Phase 3 Part 2 – Insert Users via SQL
 ```bash
@@ -178,6 +200,14 @@ sudo systemctl restart apache2
 # Optional: Allow port 8080 through firewall
 sudo ufw allow 8080/tcp
 ```
+<img width="995" alt="before apache change-port80" src="https://github.com/user-attachments/assets/4b139113-65d4-4b2b-ad64-61b77a1d39c9" />
+
+before editing Apache port config 
+
+<img width="999" alt="changing apache to port 8080-virtualhost" src="https://github.com/user-attachments/assets/975c3b5b-f92a-4854-9d75-b0ff8ea705a1" />
+
+After editing pache port config to 8080
+
 
 Now DVWA can be accessed via:
 ```bash 
@@ -213,11 +243,17 @@ sudo systemctl enable docker
 # Test
 sudo docker run hello-world
 ```
+<img width="1169" alt="installing docker" src="https://github.com/user-attachments/assets/222a7399-8e03-4190-9556-784fd396b878" />
+
+
 
 Step 2: Install SafeLine WAF
 ```bash
 bash -c "$(curl -fsSLk https://waf.chaitin.com/release/latest/manager.sh)" -- --en
 ```
+
+
+<img width="1440" alt="Running the script to install the safepoint firewall automatically" src="https://github.com/user-attachments/assets/f393dcb2-fbaf-48bd-ac3d-718ec892d3f2" />
 
 Example output:
 ```pgsql
@@ -225,6 +261,11 @@ Example output:
 [INFO] Initial password：f5UQQxoN
 [INFO] SafeLine WAF panel: https://<vm-ip>:9443/
 ```
+<img width="1440" alt="Automatic script for WAF returns username and password" src="https://github.com/user-attachments/assets/5148f67e-d775-405b-b078-a1e792c0ffd1" />
+
+
+
+
 
 ## Phase 5 – Configuring SSL for DVWA
 
@@ -237,6 +278,8 @@ sudo mkdir -p /etc/ssl/dvwa
 cd /etc/ssl/dvwa
 ```
 
+
+
 Step 2 - generate the private key
 
 ```bash
@@ -244,6 +287,7 @@ Step 2 - generate the private key
 sudo openssl genrsa -out dvwa.key 4096
 ```
 
+<img width="1440" alt="dvwa key for ssl certificate" src="https://github.com/user-attachments/assets/485e4a7c-9b0c-43ac-882c-a07b63f98007" />
 
 
 Step 3 - Generate a CSR using the private key 
@@ -265,17 +309,26 @@ Email Address []: admin@yourlab.local
 # Important: Use your IP address (135.237.184.217) as the Common Name (CN), unless you own a domain.
 ```
 
+
+
 Step 4 : Verify the CSR 
 ```bash
 sudo openssl req -text -noout -verify -in dvwa.csr
 # This will show the subject (CN, email, etc.) and public key info.
 ```
 
+<img width="1405" alt="creating SSL certificate pt 1" src="https://github.com/user-attachments/assets/8fd68475-7010-4884-b3e9-bbfc46a566f6" />
+Step 1 through step 4 
+
 
 Step 5 : This creates dvwa.crt - self signed certificate for 365 days 
 ```bash
 sudo openssl x509 -req -days 365 -in dvwa.csr -signkey dvwa.key -out dvwa.crt
 ```
+
+
+<img width="1440" alt="dvwa crt for certificate" src="https://github.com/user-attachments/assets/c75a38f6-ba02-4923-9b6a-f1c9ec6fa26e" />
+
 
 ```pgsql
 # Final Files in /etc/ssl/dvwa/:
@@ -287,10 +340,66 @@ sudo openssl x509 -req -days 365 -in dvwa.csr -signkey dvwa.key -out dvwa.crt
 | `dvwa.crt` | Self-signed certificate                    |
 ```
 
-
- 
-
+<img width="1127" alt="SSL certificate  crt  csr " src="https://github.com/user-attachments/assets/952567c5-a27d-425e-8df7-dcc81334d36b" />
 
 
 
+
+<img width="1434" alt="Adding certificate to WAF (safeline)" src="https://github.com/user-attachments/assets/515ee165-b3e2-4b42-9d2d-c65d2e25a3ff" />
+Uploading SSL certificate to SafeLine WAF
+
+## Phase 6 - Add Application to WAF to begin monitoring and protecting
+
+
+ <img width="591" alt="Add-application-safeline-WAF" src="https://github.com/user-attachments/assets/b8fa1b35-e409-4cd3-a6c9-555999902a38" />
+Add Application form where you configure for your specific setup
+
+
+<img width="1429" alt="Application in safeline" src="https://github.com/user-attachments/assets/a517fbff-9693-4ef8-93a5-114c8710661b" />
+Application successfully onbaorded to SafeLine WAF 
+
+## Phase 7 - set up Http flood-rate limiting rule and add 1 user to set up authentication for the page and then breach rate limit + refresh url and have to authenticate through the WAF + perform sql injection and observe block 
+ - WAF demonstrations with safeline (add authentic images of what happened in the lab simulation later):
+
+
+HTTP Flood simulation
+
+
+<img width="1376" alt="HTTP flood - blocked" src="https://github.com/user-attachments/assets/9224008d-ec79-40f8-8f6d-904b459d1455" />
+Create and Enable rate limiting rule to protect against potential DDoS
+
+<img width="1440" alt="HTTP flood - blocked" src="https://github.com/user-attachments/assets/317deb9f-2704-46f0-aa53-a24154c2f764" />
+When rate limit rule is breached by someone they are blocked from accessing the website by the WAF 
+
+
+Authnetication config
+sign in page 
+
+
+<img width="1428" alt="Configure-Authentication-Newusername" src="https://github.com/user-attachments/assets/22c68594-49e6-426b-84bc-c910d3fb6c17" />
+Configure new user name and enable uthentication to log into the website through the WAF
+
+<img width="1440" alt="Authenticationconfig-signin-WAF" src="https://github.com/user-attachments/assets/7333846d-0b5a-42af-b246-df045a69344f" />
+Once Authentication is enabled you will only be allowed to enter the website by entering a valid registered username and password
+
+<img width="1416" alt="Authentication-WAF-attempts" src="https://github.com/user-attachments/assets/a054f039-9033-4caf-af4f-6c284f1c8038" />
+From the WAF you can see all Authentication attempts at accessing the page and ip address associated 
+
+SQLinjection 
+
+<img width="1432" alt="SQL injection without WAF intervention" src="https://github.com/user-attachments/assets/dbd2c2f7-7d1a-4160-bed4-2432446a489d" />
+I performed a SQLi with the WAF on 'Audit' mode instead of 'Defense' and then i performed a SQLijection using the input below to observe what happens when a successful SQLi is carried out without WAF intervention.
+
+```sql
+' OR 1=1 -- -
+```
+
+
+<img width="1374" alt="SQLinjection-blocked" src="https://github.com/user-attachments/assets/f24886aa-0444-4684-8e85-a42186849e6b" />
+SQLi performed with WAF turned on
+
+
+
+<img width="1432" alt="Logs of Attacks-SQLi" src="https://github.com/user-attachments/assets/8572a006-0624-4c6e-b24d-6a4d55f3701b" />
+Logs of SQLi attacks. Take note of the ones performed when the mode was in 'Audit' were not blocked, however they are observed in the logs as an Attack (IDS).
 
