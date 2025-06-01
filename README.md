@@ -402,7 +402,7 @@ From the WAF you can see all Authentication attempts at accessing the page and i
 ### SQLinjection 
 
 <img width="1432" alt="SQL injection without WAF intervention" src="https://github.com/user-attachments/assets/dbd2c2f7-7d1a-4160-bed4-2432446a489d" />
-I performed a SQLi with the WAF on 'Audit' mode instead of 'Defense' and then i performed a SQLijection using the input below to observe what happens when a successful SQLi is carried out without WAF intervention.
+With the WAF on 'Audit' mode instead of 'Defense' I performed a SQLinjection using the input below to observe what happens when a successful SQLi is carried out without WAF intervention.
 
 ```sql
 ' OR 1=1 -- -
