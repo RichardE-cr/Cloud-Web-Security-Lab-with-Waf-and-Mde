@@ -36,7 +36,7 @@ This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, s
 - [Phase 2 – Enabling GUI + RDP for Ubuntu 24.04 image](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-2--enabling-gui--rdp-for-ubuntu-2404-image)
 - [Phase 3 - DVWA Setup & Configuration](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-3---dvwa-setup--configuration)
 - [Phase 4 – Installing Docker & SafeLine WAF](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-4--installing-docker--safeline-waf)
-- [Phase 5 – Configuring SSL for DVWA](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-5--configuring-ssl-for-dvwa)
+- [Phase 5 – Configuring SSL Certificate for DVWA](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-5--configuring-ssl-for-dvwa)
 - [Phase 6 - Add Application to WAF to begin monitoring and protecting](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-6---add-application-to-waf-to-begin-monitoring-and-protecting)
 - [Phase 7 - Simulating Attacks on the Vulnerable App and observing the response from the WAF](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-7---simulating-attacks-on-the-vulnerable-app-and-observing-the-response-from-the-waf)
 - [Phase 8 - Monitoring Logs on MDE](https://github.com/RichardE-cr/Cloud-Web-Security-Lab-with-Waf-and-Mde?tab=readme-ov-file#phase-8---monitoring-logs-on-mde)
@@ -286,7 +286,7 @@ Example output:
 
 
 
-## Phase 5 – Configuring SSL for DVWA
+## Phase 5 – Configuring SSL Certificate for DVWA
 
 
 SSL creation process: 
