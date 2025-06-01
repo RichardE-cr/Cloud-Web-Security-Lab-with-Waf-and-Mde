@@ -6,8 +6,6 @@ How Safeline WAF works:
 
 
 
-
-
 # WAF (SafeLine) Deployment & Attack Simulation 
 
 This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, simulating common attacks (e.g., SQLi, XSS), observing foreign attack traffic, and analyzing behavior via Microsoft Defender for Endpoint (MDE). The lab was performed using a single Ubuntu VM hosted on Microsoft Azure.
@@ -47,11 +45,14 @@ This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, s
    - Name: `rich-ubuntu`
    - Inbound Port: SSH (22)
 
+<img width="1427" alt="vm-creation-richubuntu" src="https://github.com/user-attachments/assets/e216ac20-f42b-447e-a5db-3c800e78f662" />
+
+
 2. **Onboard VM to Microsoft Defender for Endpoint**:
 
 ```bash
-# Step 1 – Download the onboarding script
-curl -o DefenderOnboarding.zip https://sacyberrange00.blob.core.windows.net/mde-agents/Linux-Server-GatewayWindowsDefenderATPOnboardingPackage.zip
+# Step 1 – Download your specific onboarding script to the vm via CLI
+curl -o DefenderOnboarding.zip https://''''''''''''''''''/Linux-Server-GatewayWindowsDefenderATPOnboardingPackage.zip
 
 # Step 2 – Unzip and navigate
 sudo apt install unzip
@@ -97,9 +98,14 @@ sudo systemctl start xrdp
 
 # Allow RDP in firewall
 sudo ufw allow 3389/tcp
-# You can now log in to your Ubuntu VM using Microsoft Remote Desktop (Windows/macOS/Linux) with your Linux credentials.
+# Log in to Ubuntu VM using Microsoft Windows App with Linux credentials.
 ```
 <img width="1431" alt="Setting up GUI from the commandline" src="https://github.com/user-attachments/assets/8afbe365-49a9-4db9-8155-383ea437ee5b" />
+Running Script to Enable Remote GUI to better visualize and ease of movement, etc throughout the lab.
+
+
+<img width="1435" alt="Ubuntuimage-GUI-rich-ubuntu" src="https://github.com/user-attachments/assets/4653a820-5436-47c7-bda1-5477f4f7106b" />
+Successful GUI access through Windows App post script 
 
 
 
@@ -111,7 +117,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install apache2 mariadb-server php php-mysqli php-gd libapache2-mod-php git unzip -y
 ```
 
-<img width="1420" alt="preparing the ubuntu vm and installing necessary packages" src="https://github.com/user-attachments/assets/11ef9634-05a3-495d-8ccb-f38ff3303b21" />
+<img width="1223" alt="Install-DVWAdependencies" src="https://github.com/user-attachments/assets/a45b23c9-e354-4bcf-9af8-c7232d8b5071" />
 
 
 Step 2: Install DVWA
@@ -246,14 +252,17 @@ sudo docker run hello-world
 <img width="1169" alt="installing docker" src="https://github.com/user-attachments/assets/222a7399-8e03-4190-9556-784fd396b878" />
 
 
+<img width="921" alt="sudo docker hello-world" src="https://github.com/user-attachments/assets/176a7543-6dd4-4d4c-b7f2-4ffd9a335a43" />
+Test - 'hello-world'
 
 Step 2: Install SafeLine WAF
 ```bash
 bash -c "$(curl -fsSLk https://waf.chaitin.com/release/latest/manager.sh)" -- --en
 ```
 
+<img width="1434" alt="Running the script to install the safepoint firewall automatically" src="https://github.com/user-attachments/assets/16d6492c-b01d-4964-9091-9af682a0d4c3" />
 
-<img width="1440" alt="Running the script to install the safepoint firewall automatically" src="https://github.com/user-attachments/assets/f393dcb2-fbaf-48bd-ac3d-718ec892d3f2" />
+
 
 Example output:
 ```pgsql
@@ -261,7 +270,7 @@ Example output:
 [INFO] Initial password：f5UQQxoN
 [INFO] SafeLine WAF panel: https://<vm-ip>:9443/
 ```
-<img width="1440" alt="Automatic script for WAF returns username and password" src="https://github.com/user-attachments/assets/5148f67e-d775-405b-b078-a1e792c0ffd1" />
+<img width="1433" alt="Automatic script for WAF returns username and password" src="https://github.com/user-attachments/assets/e6de4afd-f0b8-4f85-8904-b9e9039dd5d7" />
 
 
 
@@ -340,7 +349,9 @@ sudo openssl x509 -req -days 365 -in dvwa.csr -signkey dvwa.key -out dvwa.crt
 | `dvwa.crt` | Self-signed certificate                    |
 ```
 
-<img width="1127" alt="SSL certificate  crt  csr " src="https://github.com/user-attachments/assets/952567c5-a27d-425e-8df7-dcc81334d36b" />
+<img width="1125" alt="SSL certificate  crt  csr " src="https://github.com/user-attachments/assets/4b53d17e-8353-4a19-af7f-d09fa070a6f3" />
+Verified Certificates that were created in dvwa file
+
 
 
 
@@ -362,17 +373,18 @@ Application successfully onbaorded to SafeLine WAF
  - WAF demonstrations with safeline (add authentic images of what happened in the lab simulation later):
 
 
-HTTP Flood simulation
+### HTTP Flood simulation
 
 
-<img width="1376" alt="HTTP flood - blocked" src="https://github.com/user-attachments/assets/9224008d-ec79-40f8-8f6d-904b459d1455" />
+<img width="1433" alt="HTTP-flood-accesslimitingrule-success" src="https://github.com/user-attachments/assets/1d687cf1-c12c-47ac-9538-bf19bdbfe69a" />
+
 Create and Enable rate limiting rule to protect against potential DDoS
 
-<img width="1440" alt="HTTP flood - blocked" src="https://github.com/user-attachments/assets/317deb9f-2704-46f0-aa53-a24154c2f764" />
+<img width="1376" alt="HTTP flood - blocked" src="https://github.com/user-attachments/assets/9224008d-ec79-40f8-8f6d-904b459d1455" />
 When rate limit rule is breached by someone they are blocked from accessing the website by the WAF 
 
 
-Authnetication config
+### Authnetication config
 sign in page 
 
 
@@ -385,7 +397,7 @@ Once Authentication is enabled you will only be allowed to enter the website by 
 <img width="1416" alt="Authentication-WAF-attempts" src="https://github.com/user-attachments/assets/a054f039-9033-4caf-af4f-6c284f1c8038" />
 From the WAF you can see all Authentication attempts at accessing the page and ip address associated 
 
-SQLinjection 
+### SQLinjection 
 
 <img width="1432" alt="SQL injection without WAF intervention" src="https://github.com/user-attachments/assets/dbd2c2f7-7d1a-4160-bed4-2432446a489d" />
 I performed a SQLi with the WAF on 'Audit' mode instead of 'Defense' and then i performed a SQLijection using the input below to observe what happens when a successful SQLi is carried out without WAF intervention.
