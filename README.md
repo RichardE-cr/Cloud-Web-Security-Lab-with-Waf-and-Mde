@@ -80,7 +80,7 @@ mdatp --version
 mdatp health --field org_id
 ```
 
-## Phase 2 – Enabling GUI + RDP
+## Phase 2 – Enabling GUI + RDP for Ubuntu 24.04 image 
 
 Enable remote GUI access with RDP and XFCE4:
 
@@ -392,7 +392,7 @@ sign in page
 <img width="1428" alt="Configure-Authentication-Newusername" src="https://github.com/user-attachments/assets/22c68594-49e6-426b-84bc-c910d3fb6c17" />
 Configure new user name and enable uthentication to log into the website through the WAF
 
-<img width="1440" alt="Authenticationconfig-signin-WAF" src="https://github.com/user-attachments/assets/7333846d-0b5a-42af-b246-df045a69344f" />
+<img width="1373" alt="Authenticationconfig-signin-WAF" src="https://github.com/user-attachments/assets/26bede40-02b0-42d7-a924-af63f830abf8" />
 Once Authentication is enabled you will only be allowed to enter the website by entering a valid registered username and password
 
 <img width="1416" alt="Authentication-WAF-attempts" src="https://github.com/user-attachments/assets/a054f039-9033-4caf-af4f-6c284f1c8038" />
@@ -415,4 +415,34 @@ SQLi performed with WAF turned on
 
 <img width="1432" alt="Logs of Attacks-SQLi" src="https://github.com/user-attachments/assets/8572a006-0624-4c6e-b24d-6a4d55f3701b" />
 Logs of SQLi attacks. Take note of the ones performed when the mode was in 'Audit' were not blocked, however they are observed in the logs as an Attack (IDS).
+
+
+## Phase 8 - Monitoring Logs on MDE
+
+
+
+
+
+## Conclusion
+
+This lab successfully demonstrated the deployment of a Web Application Firewall (SafeLine) alongside a vulnerable application (DVWA) within a secure, monitored environment on Microsoft Azure. Despite the limitation of deploying both DVWA and SafeLine WAF on a single VM—an architecture that would be segmented in a production scenario—the implementation effectively simulated real-world security use cases such as SQL injection and XSS.
+
+Additionally, Microsoft Defender for Endpoint (MDE) was used to monitor the VM, enabling visibility into endpoint activity and threat detection. Remote GUI access was also configured via XRDP, improving usability during lab interaction.
+
+Through this hands-on experience, core cybersecurity and DevSecOps principles were practiced:
+
+* Setting up layered defense (WAF + MDE)
+* Simulating real-world attacks (SQLi)
+* Observing WAF behavior and traffic blocking
+* Managing secure service configurations (SSL, ports, access)
+* Documenting repeatable and auditable procedures
+* This lab illustrates not only technical proficiency in infrastructure and security deployment but also an understanding of security observability and layered protection strategies.
+
+## Final Notes
+
+* SafeLine WAF successfully mitigated simulated attacks against DVWA.
+* Logs and behavior could be further integrated into centralized SIEM solutions for extended analysis.
+* All services were containerized or configured following industry best practices within resource limitations.
+* MDE provided detailed threat intel, enhancing endpoint-level protection and visibility.
+* GUI access was successfully implemented for convenience, highlighting versatility across CLI and GUI management interfaces.
 
