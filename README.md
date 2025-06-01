@@ -270,7 +270,8 @@ Example output:
 [INFO] Initial password：f5UQQxoN
 [INFO] SafeLine WAF panel: https://<vm-ip>:9443/
 ```
-<img width="1433" alt="Automatic script for WAF returns username and password" src="https://github.com/user-attachments/assets/e6de4afd-f0b8-4f85-8904-b9e9039dd5d7" />
+<img width="1433" alt="Automatic script for WAF returns username and password" src="https://github.com/user-attachments/assets/fdc5fb81-4524-4149-a7b3-548aa1c41fed" />
+
 
 
 
