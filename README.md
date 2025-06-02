@@ -431,8 +431,46 @@ Logs of SQLi attacks. Take note of the ones performed when the mode was in 'Audi
 
 ## Phase 8 - Monitoring Logs on MDE
 
+Since the VM was onboarded to MDE after creation we can assess the logs when hunting for threats or monitoring access to the device:
 
 
+* Example 1: 
+
+```kql
+// Query to see how many times someone tried and failed to login to the VM
+// Query revealed that in less than 7 days there have been more than 400 "FailedLogonAttempts" - which means that potential malicious actors are trying to gain access to the VM
+DeviceLogonEvents  
+| where DeviceName contains "rich-ubuntu"
+| where ActionType == "LogonFailed"
+```
+
+<img width="1438" alt="DeviceLogonEvents-442FailedLogonAttempts" src="https://github.com/user-attachments/assets/d7f45b18-2781-4870-a6ca-2a064c05beb6" />
+
+
+* Example 2:
+
+```kql
+// Using this KQL query, MDE shows the distinct IP addresses that are failing access to the VM
+// This query reveals that 15 different ip addresses are responsible for 442 failed logons - indicating brute force attempts
+DeviceLogonEvents  
+| where DeviceName contains "rich-ubuntu"
+| where ActionType == "LogonFailed" 
+| distinct RemoteIP
+``` 
+<img width="1373" alt="DeviceLogonEvents-distinctRemoteIP" src="https://github.com/user-attachments/assets/3bc51ea5-614f-4389-af14-2073492385d5" />
+
+
+* Example 3: MDE also has different tables that collect logs to parse through and inspect records like "DeviceProccessEvents"
+
+```kql
+// This query returns the events where 'curl' was used on the command line in the VM and you can inspect each to identify potential malicous downloads, etc.
+DeviceProcessEvents 
+| where DeviceName contains "rich-ubuntu"
+| where ActionType == "ProcessCreated"
+| where InitiatingProcessCommandLine contains "curl"
+| order by Timestamp asc
+```
+<img width="1405" alt="DeviceProcessEvents-contains-curl" src="https://github.com/user-attachments/assets/caa8be0d-d752-4cfb-b168-4fc1100bc218" />
 
 
 ## Conclusion
