@@ -1,4 +1,4 @@
-# Cloud-Web-Security-Lab-with-Waf-and-Mde
+# Protecting Vulnerable App (DVWA) with Web Application Firewall (WAF) + Threat Hunting in Microsoft Defender
 
 How Safeline WAF works:
 
