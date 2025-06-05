@@ -8,7 +8,7 @@ How Safeline WAF works:
 
 # WAF (SafeLine) Deployment & Attack Simulation 
 
-This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, simulating common attacks (e.g., SQLi, XSS), observing foreign attack traffic, and analyzing behavior via Microsoft Defender for Endpoint (MDE). The lab was performed using a single Ubuntu VM hosted on Microsoft Azure.
+This lab focused on deploying a Web Application Firewall (WAF) using SafeLine, simulating common attacks (e.g., SQLi), observing foreign attack traffic, and analyzing behavior via Microsoft Defender for Endpoint (MDE). The lab was performed using a single Ubuntu VM hosted on Microsoft Azure.
 
 > **Note:** Due to Azure VM constraints, DVWA and the WAF were deployed on the same VM. In production environments, these services should be separated to ensure WAF integrity.
 
