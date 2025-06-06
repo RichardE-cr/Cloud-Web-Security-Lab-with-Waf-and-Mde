@@ -76,13 +76,17 @@ mdatp health
 
 
 # If mdatp is not found:
+# 1. First add Microsoft's repository and GPG key
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft.gpg
+sudo chmod 644 /usr/share/keyrings/microsoft.gpg
 
-# Install manually
-sudo apt install mdatp
-# OR:
-curl -o mdatp.deb https://aka.ms/linux-mdatp-download
-sudo dpkg -i mdatp.deb
-sudo apt --fix-broken install
+# 2. Add the repository to your sources
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/ubuntu/22.04/prod jammy main" | sudo tee /etc/apt/sources.list.d/microsoft.list
+
+# 3. Update and install
+sudo apt update
+sudo apt install -y mdatp
+
 
 # Verify installation
 mdatp --version
